@@ -7,24 +7,11 @@ using TheWitcher.Domain.Enums;
 
 namespace TheWitcher.Domain.Models
 {
-    public class Monstro
+    public class Monstro : InformacoesBasicas
     {
-        private int Id;
-        private string Nome;
-        private DateTime DataEncontro;
-        private EnumRacasMonstros Raca;
-        private decimal Recompensa;
-
-        public int id
-        {
-            get
-            {
-                return Id;
-            }
-            set
-            {
-                this.Id = id;
-            }
-        }
+        public DateTime DataEncontro { get; set; }
+        public EnumRacasMonstros Raca { get; set; }
+        public List<EnumSinais> SinaisEficazes { get; set; }
+        public decimal Recompensa { get; set; }
     }
 }

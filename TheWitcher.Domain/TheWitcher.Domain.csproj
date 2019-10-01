@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\EnumRacasMonstros.cs" />
+    <Compile Include="Enums\EnumSexo.cs" />
+    <Compile Include="Models\Bruxo.cs" />
+    <Compile Include="Models\InformacoesBasicas.cs" />
     <Compile Include="Models\Monstro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
