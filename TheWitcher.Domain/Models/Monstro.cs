@@ -11,7 +11,7 @@ namespace TheWitcher.Domain.Models
     {
         public DateTime DataEncontro { get; set; }
         public EnumRacasMonstros Raca { get; set; }
-        public List<EnumSinais> SinaisEficazes { get; set; }
+        // public List<EnumSinais> SinaisEficazes { get; set; }
         public decimal Recompensa { get; set; }
     }
 }
