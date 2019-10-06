@@ -61,7 +61,7 @@ namespace TheWitcher.Data.DAO
                             Atk = (int)reader["atk"],
                             DataEncontro = (DateTime)reader["dataencontro"],
                             Raca = (EnumRacasMonstros)reader["raca"],
-                            Recompensa = (decimal)reader["recompensa"]
+                            Recompensa = Convert.ToDecimal(reader["recompensa"])
                         };
                         monstros.Add(monstro);
                     }

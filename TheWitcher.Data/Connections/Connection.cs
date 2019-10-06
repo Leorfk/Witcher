@@ -8,7 +8,8 @@ namespace TheWitcher.Data.Connections
     public class Connection : IConnection
     {
         private MySqlConnection _connection;
-        private readonly string con = "Server=localhost;Database=witcher;Uid=root;Pwd=12345678";
+        //private readonly string con = "Server=localhost;Port=3306;Database=witcher;User id=root;Pwd=12345678;";
+        private string con = @"server=localhost;user id=root;password=12345678;database=witcher;";
 
         public Connection()
         {
@@ -18,6 +19,7 @@ namespace TheWitcher.Data.Connections
         {
             try
             {
+
                 if (_connection.State == ConnectionState.Closed)
                 {
                     _connection.Open();
