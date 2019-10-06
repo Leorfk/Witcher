@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TheWitcher.Data.Connections;
+using TheWitcher.Data.DAO;
+using TheWitcher.Data.Interfaces;
+using TheWitcher.Domain.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,11 +15,19 @@ namespace TheWitcher.API.Controllers
     [Route("v1/[controller]")]
     public class MonstrosController : Controller
     {
+        private readonly IDAO<Monstro> _monstros;
+        private readonly IConnection _connection;
+        public MonstrosController()
+        {
+            _connection = new Connection();
+            _monstros = new MonstrosDAO(_connection);
+        }
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Monstro> Get()
+
         {
-            return new string[] { "value1", "value2" };
+            return _monstros.GetAll();
         }
 
         // GET api/<controller>/5
