@@ -32,9 +32,9 @@ namespace TheWitcher.API.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Monstro Get(int id)
         {
-            return "value";
+            return _monstros.GetById(id);
         }
 
         // POST api/<controller>

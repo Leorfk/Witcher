@@ -1,5 +1,5 @@
 ﻿using TheWitcher.Domain.Enums;
-
+ 
 namespace TheWitcher.Domain.Models
 {
     public class Bruxo : InformacoesBasicas
