@@ -30,8 +30,8 @@ namespace TheWitcher.API.Controllers
             return _monstros.GetAll();
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
+        // GET v1/monstros/unico?id=90
+        [HttpGet("unico")]
         public Monstro Get(int id)
         {
             return _monstros.GetById(id);
@@ -49,10 +49,11 @@ namespace TheWitcher.API.Controllers
         {
         }
 
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
+        // DELETE v1/monstros/del?id=90
+        [HttpDelete("del")]
         public void Delete(int id)
         {
+            _monstros.Delete(id);
         }
     }
 }

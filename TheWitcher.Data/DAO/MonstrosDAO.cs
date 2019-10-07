@@ -17,13 +17,13 @@ namespace TheWitcher.Data.DAO
             this._connection = connection;
         }
 
-        public bool Delete(Monstro model)
+        public bool Delete(int id)
         {
             using (MySqlCommand command = _connection.Buscar().CreateCommand())
             {
                 command.CommandType = CommandType.Text;
                 command.CommandText = "delete from monstros where idmonstro=@idmonstro";
-                command.Parameters.Add("@idmonstro", MySqlDbType.Int32).Value = model.Id;
+                command.Parameters.Add("@idmonstro", MySqlDbType.Int32).Value = id;
 
                 if (command.ExecuteNonQuery() > 0)
                 {

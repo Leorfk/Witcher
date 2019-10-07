@@ -12,7 +12,7 @@ namespace TheWitcher.Data.Interfaces
     {
         T Insert(T model);
         void Update(T model);
-        bool Delete(T model);
+        bool Delete(int id);
         T GetById(int id);
         List<T> GetAll();
     }
