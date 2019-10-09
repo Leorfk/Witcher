@@ -8,8 +8,7 @@ namespace TheWitcher.Data.Connections
     public class Connection : IConnection
     {
         private MySqlConnection _connection;
-        //private readonly string con = "Server=localhost;Port=3306;Database=witcher;User id=root;Pwd=12345678;";
-        private string con = @"server=localhost;user id=root;password=12345678;database=witcher;";
+        private readonly string con = "server=localhost;user id=root;password=12345678;database=witcher;";
 
         public Connection()
         {

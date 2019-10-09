@@ -16,25 +16,39 @@ namespace TheWitcher.API.Controllers
     public class MonstrosController : Controller
     {
         private readonly IDAO<Monstro> _monstros;
-        private readonly IConnection _connection;
         public MonstrosController()
         {
-            _connection = new Connection();
-            _monstros = new MonstrosDAO(_connection);
+            _monstros = new MonstrosDAO();
         }
         // GET: api/<controller>
         [HttpGet]
-        public List<Monstro> Get()
-
+        public IActionResult Get()
         {
-            return _monstros.GetAll();
+            try
+            {
+                return Json(Ok(_monstros.GetAll()));
+            }
+            catch (Exception ex)
+            {
+
+                return Json(StatusCode(500, "Deu ruim: " + ex.Message));
+            }
+            
         }
 
         // GET v1/monstros/unico?id=90
         [HttpGet("unico")]
-        public Monstro Get(int id)
+        public IActionResult Get(int id)
         {
-            return _monstros.GetById(id);
+            try
+            {
+                return Json(Ok(_monstros.GetById(id)));
+            }
+            catch (Exception ex)
+            {
+
+                return Json(StatusCode(500, "Deu ruim: " + ex.Message));
+            }
         }
 
         // POST api/<controller>
@@ -49,11 +63,20 @@ namespace TheWitcher.API.Controllers
         {
         }
 
-        // DELETE v1/monstros/del?id=90
-        [HttpDelete("del")]
-        public void Delete(int id)
+        // DELETE v1/monstros/delete?idMonstro=90
+        [HttpDelete("delete")]
+        public IActionResult Delete(int idMonstro)
         {
-            _monstros.Delete(id);
+            try
+            {
+                return Json(Ok(_monstros.Delete(idMonstro)));
+            }
+            catch (Exception ex)
+            {
+
+                return Json(StatusCode(500, "Deu ruim: " + ex.Message));
+            }
+            
         }
     }
 }

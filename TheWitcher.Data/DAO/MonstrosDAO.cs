@@ -5,37 +5,50 @@ using TheWitcher.Domain.Models;
 using System.Data;
 using TheWitcher.Domain.Enums;
 using System.Collections.Generic;
+using TheWitcher.Data.Connections;
 
 namespace TheWitcher.Data.DAO
 {
     public class MonstrosDAO : IDAO<Monstro>, IDisposable
     {
         private IConnection _connection;
+        public MonstrosDAO()
+        {
+            this._connection = new Connection();
+        }
 
         public MonstrosDAO(IConnection connection)
         {
             this._connection = connection;
         }
 
-        public bool Delete(int id)
+        public bool Delete(int idMonstro)
         {
-            using (MySqlCommand command = _connection.Buscar().CreateCommand())
+            try
             {
-                command.CommandType = CommandType.Text;
-                command.CommandText = "delete from monstros where idmonstro=@idmonstro";
-                command.Parameters.Add("@idmonstro", MySqlDbType.Int32).Value = id;
-
-                if (command.ExecuteNonQuery() > 0)
+                using (MySqlCommand command = _connection.Buscar().CreateCommand())
                 {
-                    return true;
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("@idmonstro", MySqlDbType.Int32).Value = idMonstro;
+                    command.CommandText = $"delete from monstros where idmonstro=@idmonstro;";
+                    command.ExecuteNonQuery();
+                    if (command.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
+            catch (Exception erro)
+            {
+
+                throw new Exception(erro.Message);
+            }
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            GC.SuppressFinalize(this);
         }
 
         public List<Monstro> GetAll()
@@ -83,8 +96,8 @@ namespace TheWitcher.Data.DAO
                 using (MySqlCommand command = _connection.Buscar().CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "select * from monstros where idmonstro=@idmonstro";
-                    command.Parameters.Add("@idmonstro", MySqlDbType.Int32).Value = id;
+                    command.CommandText = "select * from monstros where idmonstro=@id";
+                    command.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
