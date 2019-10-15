@@ -51,10 +51,18 @@ namespace TheWitcher.API.Controllers
             }
         }
 
-        // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody]string value)
+        // POST v1/monstros/cadastro
+        [HttpPost("cadastro")]
+        public IActionResult Post([FromBody]Monstro monstro)
         {
+            try
+            {
+                return Json(Ok(_monstros.Insert(monstro)));
+            }
+            catch (Exception ex)
+            {
+                return Json(StatusCode(500, "Deu ruim: " + ex.Message));
+            }
         }
 
         // PUT api/<controller>/5

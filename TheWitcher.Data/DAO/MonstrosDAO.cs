@@ -133,9 +133,8 @@ namespace TheWitcher.Data.DAO
                 using (MySqlCommand command = _connection.Buscar().CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText =
-                        "insert into monstros (nome, idade, sexo, hp, atk, dataencontro, raca, recompensa)" +
-                        "values (@nome, @idade, @sexo, @hp, @atk, @dataencontro, @raca, @recompensa)";
+                    command.CommandText = "insert into monstros (idmonstro, nome, idade, sexo, hp, atk, dataencontro, raca, recompensa)" +
+                        "values (null, @nome, @idade, @sexo, @hp, @atk, @dataencontro, @raca, @recompensa)";
 
                     command.Parameters.Add("@nome", MySqlDbType.Text).Value = model.Nome;
                     command.Parameters.Add("@idade", MySqlDbType.Int32).Value = model.Idade;
@@ -145,6 +144,7 @@ namespace TheWitcher.Data.DAO
                     command.Parameters.Add("@dataencontro", MySqlDbType.DateTime).Value = model.DataEncontro;
                     command.Parameters.Add("@raca", MySqlDbType.Int32).Value = model.Raca;
                     command.Parameters.Add("@recompensa", MySqlDbType.Decimal).Value = model.Recompensa;
+                    command.ExecuteNonQuery();
                 }
                 return model;
             }
