@@ -162,11 +162,9 @@ namespace TheWitcher.Data.DAO
                 using (MySqlCommand command = _connection.Buscar().CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText =
-                        "update monstros set " +
-                        "nome=@nome, idade=@idade, sexo=@sexo, hp=@hp, atk=@atk, dataencontro=@dataencontro, raca=@raca, recompensa=@recompensa " +
-                        "where idmonstro=@idmonstro";
+                    command.CommandText = "update monstros set nome=@nome, idade=@idade, sexo=@sexo, hp=@hp, atk=@atk, dataencontro=@dataencontro, raca=@raca, recompensa=@recompensa where idmonstro=@idmonstro";
 
+                    command.Parameters.Add("@idmonstro", MySqlDbType.Int32).Value = model.Id;
                     command.Parameters.Add("@nome", MySqlDbType.Text).Value = model.Nome;
                     command.Parameters.Add("@idade", MySqlDbType.Int32).Value = model.Idade;
                     command.Parameters.Add("@sexo", MySqlDbType.Int32).Value = model.Sexo;

@@ -66,9 +66,19 @@ namespace TheWitcher.API.Controllers
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut("atualizar")]
+        public IActionResult Put([FromBody]Monstro monstro)
         {
+            try
+            {
+                _monstros.Update(monstro);
+                return Json(Ok("Atualizado com sucesso"));
+            }
+            catch (Exception ex)
+            {
+
+                return Json(StatusCode(500, "Deu ruim: " + ex.Message));
+            }
         }
 
         // DELETE v1/monstros/delete?idMonstro=90
