@@ -41,7 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\EnumArmadura.cs" />
+    <Compile Include="Enums\EnumEscola.cs" />
     <Compile Include="Enums\EnumRacasMonstros.cs" />
+    <Compile Include="Enums\EnumSexo.cs" />
+    <Compile Include="Enums\EnumSinais.cs" />
+    <Compile Include="Interfaces\IMonstrosRepository.cs" />
+    <Compile Include="Interfaces\IMonstrosService.cs" />
+    <Compile Include="Models\Bruxo.cs" />
+    <Compile Include="Models\InformacoesBasicas.cs" />
     <Compile Include="Models\Monstro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
